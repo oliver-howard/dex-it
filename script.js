@@ -115,15 +115,19 @@ class PokedexTracker {
         
         try {
             console.log('Loading Pokemon data...');
+            let allPokemonData;
             if (generation === 'national') {
                 // National Dex - load all Pokemon
-                this.pokemon = this.getAllPokemonData();
+                allPokemonData = this.getAllPokemonData();
             } else {
                 // Specific generation
-                this.pokemon = this.getGenerationData(generation);
+                allPokemonData = this.getGenerationData(generation);
             }
             
-            console.log(`Loaded ${this.pokemon.length} Pokemon for generation ${generation}`);
+            // Filter out regional forms from main display
+            this.pokemon = allPokemonData.filter(pokemon => !isRegionalForm(pokemon.name));
+            
+            console.log(`Loaded ${this.pokemon.length} Pokemon for generation ${generation} (${allPokemonData.length - this.pokemon.length} regional forms hidden)`);
             this.filteredPokemon = [...this.pokemon];
             console.log('Calling updateUI...');
             this.updateUI();
@@ -429,8 +433,123 @@ class PokedexTracker {
     }
 
     populateModal(pokemonData) {
+        // Set current Pokemon data
+        this.currentPokemonData = pokemonData;
+        
+        // Set up regional form tabs
+        this.setupRegionalFormTabs(pokemonData);
+        
+        // Populate the modal with the current Pokemon data
+        this.updateModalContent(pokemonData);
+    }
+    
+    setupRegionalFormTabs(pokemonData) {
+        const basePokemonName = getBasePokemonName(pokemonData.name);
+        const regionalForms = getRegionalForms(basePokemonName);
+        const regionalTabsContainer = document.getElementById('regionalTabs');
+        const tabButtonsContainer = document.getElementById('tabButtons');
+        
+        // Clear existing tabs
+        tabButtonsContainer.innerHTML = '';
+        
+        // Check if there are regional forms to show tabs for
+        if (regionalForms.length > 0) {
+            regionalTabsContainer.style.display = 'block';
+            
+            // Create base form tab
+            const baseFormTab = this.createTabButton(basePokemonName, 'Base Form', true);
+            tabButtonsContainer.appendChild(baseFormTab);
+            
+            // Create regional form tabs
+            regionalForms.forEach(regionalFormName => {
+                const formData = findPokemonByName(regionalFormName);
+                if (formData) {
+                    const formDisplayName = this.formatRegionalFormName(regionalFormName);
+                    const tab = this.createTabButton(regionalFormName, formDisplayName, false);
+                    tabButtonsContainer.appendChild(tab);
+                }
+            });
+            
+            // Set active tab based on current Pokemon
+            this.setActiveTab(pokemonData.name);
+        } else {
+            regionalTabsContainer.style.display = 'none';
+        }
+    }
+    
+    createTabButton(pokemonName, displayName, isBaseForm) {
+        const button = document.createElement('button');
+        button.className = `tab-button ${isBaseForm ? 'base-form' : ''}`;
+        button.textContent = displayName;
+        button.dataset.pokemonName = pokemonName;
+        
+        button.addEventListener('click', () => {
+            const targetPokemonData = isBaseForm ? 
+                this.findBasePokemonData(pokemonName) : 
+                findPokemonByName(pokemonName);
+            
+            if (targetPokemonData) {
+                this.updateModalContent(targetPokemonData);
+                this.setActiveTab(pokemonName);
+            }
+        });
+        
+        return button;
+    }
+    
+    findBasePokemonData(basePokemonName) {
+        // Find the base form Pokemon data
+        for (let gen = 1; gen <= 9; gen++) {
+            const varName = `GEN${gen}_POKEMON`;
+            if (typeof window[varName] !== 'undefined') {
+                const pokemon = window[varName].find(p => 
+                    p.name === basePokemonName && !isRegionalForm(p.name)
+                );
+                if (pokemon) {
+                    return pokemon;
+                }
+            }
+        }
+        return null;
+    }
+    
+    formatRegionalFormName(formName) {
+        // Convert 'alolan-raichu' to 'Alolan'
+        const parts = formName.split('-');
+        if (parts.length > 1) {
+            return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
+        }
+        return formName;
+    }
+    
+    formatPokemonName(name) {
+        return name.split('-').map(word => 
+            word.charAt(0).toUpperCase() + word.slice(1)
+        ).join(' ');
+    }
+    
+    setActiveTab(pokemonName) {
+        // Remove active class from all tabs
+        document.querySelectorAll('.tab-button').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // Find and activate the correct tab
+        const targetTab = document.querySelector(`[data-pokemon-name="${pokemonName}"]`) ||
+                         document.querySelector(`[data-pokemon-name="${getBasePokemonName(pokemonName)}"]`);
+        
+        if (targetTab) {
+            targetTab.classList.add('active');
+        }
+    }
+    
+    updateModalContent(pokemonData) {
+        // Update current Pokemon reference
+        this.currentPokemon = pokemonData;
+        this.currentPokemonId = pokemonData.id;
+        
         // Basic info
-        document.getElementById('modalPokemonName').textContent = pokemonData.name;
+        document.getElementById('modalPokemonName').textContent = this.formatPokemonName(pokemonData.name);
         document.getElementById('modalPokemonNumber').textContent = `#${pokemonData.id.toString().padStart(3, '0')}`;
         
         // Image
@@ -509,11 +628,11 @@ class PokedexTracker {
         // Create canvas container
         const chartContainer = document.createElement('div');
         chartContainer.className = 'radar-chart-container';
-        chartContainer.style.cssText = 'position: relative; width: 400px; height: 400px; margin: 0 auto; max-width: 100%;';
+        chartContainer.style.cssText = 'position: relative; width: 480px; height: 480px; margin: 0 auto; max-width: 100%;';
         
         const canvas = document.createElement('canvas');
         const scale = window.devicePixelRatio || 1;
-        const displaySize = 400;
+        const displaySize = 480;
         
         // Set actual canvas size (high resolution)
         canvas.width = displaySize * scale;
@@ -532,7 +651,7 @@ class PokedexTracker {
         
         const centerX = displaySize / 2;
         const centerY = displaySize / 2;
-        const radius = 160;
+        const radius = 160; // Restored to good size with larger canvas
         const numStats = statOrder.length;
         
         // Clear canvas
@@ -571,17 +690,31 @@ class PokedexTracker {
             ctx.lineTo(endX, endY);
             ctx.stroke();
             
-            // Draw label
-            const labelX = centerX + Math.cos(angle) * (radius + 30);
-            const labelY = centerY + Math.sin(angle) * (radius + 30);
+            // Draw label with better positioning
+            const labelDistance = radius + 50; // Increased distance from center
+            const labelX = centerX + Math.cos(angle) * labelDistance;
+            const labelY = centerY + Math.sin(angle) * labelDistance;
+            
+            // Adjust text alignment based on position
+            if (Math.abs(Math.cos(angle)) > 0.7) {
+                // Left or right position
+                ctx.textAlign = Math.cos(angle) > 0 ? 'left' : 'right';
+            } else {
+                // Top or bottom position
+                ctx.textAlign = 'center';
+            }
             
             ctx.fillStyle = '#333';
-            ctx.fillText(statLabels[statName], labelX, labelY + 6);
+            ctx.font = 'bold 12px Arial'; // Smaller, bold font for labels
+            ctx.fillText(statLabels[statName], labelX, labelY);
             
             // Draw stat value
             ctx.fillStyle = '#666';
-            ctx.font = '14px Arial';
-            ctx.fillText(statValue.toString(), labelX, labelY + 22);
+            ctx.font = '11px Arial';
+            ctx.fillText(statValue.toString(), labelX, labelY + 14);
+            
+            // Reset text alignment and font
+            ctx.textAlign = 'center';
             ctx.font = '16px Arial';
         }
         

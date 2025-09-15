@@ -3484,7 +3484,7 @@ window.GEN8_POKEMON = [
   // Galarian Forms introduced in Generation 8
   {
     "id": 10161,
-    "name": "meowth-galar",
+    "name": "galarian-meowth",
     "types": [
       "steel"
     ],
@@ -3523,7 +3523,7 @@ window.GEN8_POKEMON = [
   },
   {
     "id": 10162,
-    "name": "ponyta-galar",
+    "name": "galarian-ponyta",
     "types": [
       "psychic"
     ],
@@ -3562,7 +3562,7 @@ window.GEN8_POKEMON = [
   },
   {
     "id": 10163,
-    "name": "rapidash-galar",
+    "name": "galarian-rapidash",
     "types": [
       "psychic",
       "fairy"
@@ -3602,7 +3602,7 @@ window.GEN8_POKEMON = [
   },
   {
     "id": 10174,
-    "name": "zigzagoon-galar",
+    "name": "galarian-zigzagoon",
     "types": [
       "dark",
       "normal"
@@ -3789,7 +3789,7 @@ window.GEN8_POKEMON = [
   // Additional Galarian Forms
   {
     "id": 10164,
-    "name": "slowpoke-galar",
+    "name": "galarian-slowpoke",
     "types": [
       "psychic"
     ],
@@ -3828,7 +3828,7 @@ window.GEN8_POKEMON = [
   },
   {
     "id": 10165,
-    "name": "slowbro-galar",
+    "name": "galarian-slowbro",
     "types": [
       "poison",
       "psychic"
@@ -3868,7 +3868,7 @@ window.GEN8_POKEMON = [
   },
   {
     "id": 10166,
-    "name": "farfetchd-galar",
+    "name": "galarian-farfetchd",
     "types": [
       "fighting"
     ],
@@ -3902,7 +3902,7 @@ window.GEN8_POKEMON = [
   },
   {
     "id": 10167,
-    "name": "weezing-galar",
+    "name": "galarian-weezing",
     "types": [
       "poison",
       "fairy"
@@ -3942,7 +3942,7 @@ window.GEN8_POKEMON = [
   },
   {
     "id": 10168,
-    "name": "mr-mime-galar",
+    "name": "galarian-mr-mime",
     "types": [
       "ice",
       "psychic"
@@ -3982,7 +3982,7 @@ window.GEN8_POKEMON = [
   },
   {
     "id": 10169,
-    "name": "articuno-galar",
+    "name": "galarian-articuno",
     "types": [
       "psychic",
       "flying"
@@ -4012,7 +4012,7 @@ window.GEN8_POKEMON = [
   },
   {
     "id": 10170,
-    "name": "zapdos-galar",
+    "name": "galarian-zapdos",
     "types": [
       "fighting",
       "flying"
@@ -4042,7 +4042,7 @@ window.GEN8_POKEMON = [
   },
   {
     "id": 10171,
-    "name": "moltres-galar",
+    "name": "galarian-moltres",
     "types": [
       "dark",
       "flying"
@@ -4072,7 +4072,7 @@ window.GEN8_POKEMON = [
   },
   {
     "id": 10172,
-    "name": "slowking-galar",
+    "name": "galarian-slowking",
     "types": [
       "poison",
       "psychic"
@@ -4112,7 +4112,7 @@ window.GEN8_POKEMON = [
   },
   {
     "id": 10173,
-    "name": "corsola-galar",
+    "name": "galarian-corsola",
     "types": [
       "ghost"
     ],
@@ -4142,6 +4142,214 @@ window.GEN8_POKEMON = [
     "sprites": {
       "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10173.png",
       "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10173.png"
+    }
+  },
+  {
+    "id": 10174,
+    "name": "galarian-zigzagoon",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "height": 4,
+    "weight": 175,
+    "base_experience": 56,
+    "stats": {
+      "hp": 38,
+      "attack": 30,
+      "defense": 41,
+      "sp.-atk": 30,
+      "sp.-def": 41,
+      "speed": 60
+    },
+    "abilities": [
+      {
+        "name": "pickup",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "gluttony",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "quick-feet",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10174.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10174.png"
+    }
+  },
+  {
+    "id": 10175,
+    "name": "galarian-linoone",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "height": 5,
+    "weight": 325,
+    "base_experience": 147,
+    "stats": {
+      "hp": 78,
+      "attack": 70,
+      "defense": 61,
+      "sp.-atk": 50,
+      "sp.-def": 61,
+      "speed": 100
+    },
+    "abilities": [
+      {
+        "name": "pickup",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "gluttony",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "quick-feet",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10175.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10175.png"
+    }
+  },
+  {
+    "id": 10176,
+    "name": "galarian-darumaka",
+    "types": [
+      "ice"
+    ],
+    "height": 7,
+    "weight": 400,
+    "base_experience": 63,
+    "stats": {
+      "hp": 70,
+      "attack": 90,
+      "defense": 45,
+      "sp.-atk": 15,
+      "sp.-def": 45,
+      "speed": 50
+    },
+    "abilities": [
+      {
+        "name": "hustle",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "inner-focus",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10176.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10176.png"
+    }
+  },
+  {
+    "id": 10177,
+    "name": "galarian-darmanitan",
+    "types": [
+      "ice"
+    ],
+    "height": 17,
+    "weight": 1200,
+    "base_experience": 168,
+    "stats": {
+      "hp": 105,
+      "attack": 140,
+      "defense": 55,
+      "sp.-atk": 30,
+      "sp.-def": 55,
+      "speed": 95
+    },
+    "abilities": [
+      {
+        "name": "gorilla-tactics",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "zen-mode",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10177.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10177.png"
+    }
+  },
+  {
+    "id": 10179,
+    "name": "galarian-yamask",
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "height": 5,
+    "weight": 15,
+    "base_experience": 61,
+    "stats": {
+      "hp": 38,
+      "attack": 55,
+      "defense": 85,
+      "sp.-atk": 30,
+      "sp.-def": 65,
+      "speed": 30
+    },
+    "abilities": [
+      {
+        "name": "wandering-spirit",
+        "is_hidden": false,
+        "slot": 1
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10179.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10179.png"
+    }
+  },
+  {
+    "id": 10180,
+    "name": "galarian-stunfisk",
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "height": 7,
+    "weight": 205,
+    "base_experience": 165,
+    "stats": {
+      "hp": 109,
+      "attack": 81,
+      "defense": 99,
+      "sp.-atk": 66,
+      "sp.-def": 84,
+      "speed": 32
+    },
+    "abilities": [
+      {
+        "name": "mimicry",
+        "is_hidden": false,
+        "slot": 1
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10180.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10180.png"
     }
   },
   // Additional Hisuian Forms
