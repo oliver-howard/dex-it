@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Test</title>
+</head>
+<body>
+    <h1>Debug Test</h1>
+    <div id="output"></div>
+
+    <script src="data/gen1-pokemon.js"></script>
+    <script src="data/gen2-pokemon.js"></script>
+    <script src="data/gen3-pokemon.js"></script>
+    
+    <script>
+        const output = document.getElementById('output');
+        
+        function log(message) {
+            output.innerHTML += message + '<br>';
+            console.log(message);
+        }
+        
+        // Test if variables are loaded
+        log('Testing generation data loading...');
+        
+        log('GEN1_POKEMON exists: ' + (typeof GEN1_POKEMON !== 'undefined'));
+        log('GEN2_POKEMON exists: ' + (typeof GEN2_POKEMON !== 'undefined'));
+        log('GEN3_POKEMON exists: ' + (typeof GEN3_POKEMON !== 'undefined'));
+        
+        if (typeof GEN1_POKEMON !== 'undefined') {
+            log('GEN1_POKEMON length: ' + GEN1_POKEMON.length);
+        }
+        
+        if (typeof GEN2_POKEMON !== 'undefined') {
+            log('GEN2_POKEMON length: ' + GEN2_POKEMON.length);
+        }
+        
+        if (typeof GEN3_POKEMON !== 'undefined') {
+            log('GEN3_POKEMON length: ' + GEN3_POKEMON.length);
+        }
+        
+        // Test window access
+        log('window.GEN1_POKEMON exists: ' + (typeof window.GEN1_POKEMON !== 'undefined'));
+        log('window.GEN2_POKEMON exists: ' + (typeof window.GEN2_POKEMON !== 'undefined'));
+        
+        // Test dynamic access
+        for (let gen = 1; gen <= 3; gen++) {
+            const varName = `GEN${gen}_POKEMON`;
+            log(`Testing ${varName}: ` + (typeof window[varName] !== 'undefined'));
+            if (window[varName]) {
+                log(`${varName} has ${window[varName].length} Pokemon`);
+            }
+        }
+    </script>
+</body>
+</html>

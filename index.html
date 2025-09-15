@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">Tracker</a>
+                <a href="games.html" class="nav-link">Games</a>
+            </div>
+        </nav>
+        <header>
+            <h1>Pokédex Tracker</h1>
+            <div class="generation-selector">
+                <select id="generationSelect">
+                    <option value="1">Generation I - Kanto (151 Pokémon)</option>
+                    <option value="2">Generation II - Johto (100 Pokémon)</option>
+                    <option value="3">Generation III - Hoenn (135 Pokémon)</option>
+                    <option value="4">Generation IV - Sinnoh (107 Pokémon)</option>
+                    <option value="5">Generation V - Unova (156 Pokémon)</option>
+                    <option value="6">Generation VI - Kalos (72 Pokémon)</option>
+                    <option value="7">Generation VII - Alola (88 Pokémon)</option>
+                    <option value="8">Generation VIII - Galar (96 Pokémon)</option>
+                    <option value="9">Generation IX - Paldea (120 Pokémon)</option>
+                    <option value="national">National Dex - All Regions (1025+ Pokémon)</option>
+                </select>
+            </div>
+            <div class="progress">
+                <span id="progressCount">0/151 Caught</span>
+                <span id="regionName">Kanto Region</span>
+            </div>
+        </header>
+
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="Search Pokémon...">
+            <select id="statusFilter">
+                <option value="all">All Status</option>
+                <option value="caught">Caught</option>
+                <option value="not-caught">Not Caught</option>
+            </select>
+            <select id="typeFilter">
+                <option value="all">All Types</option>
+            </select>
+            <button id="clearFilters">Clear Filters</button>
+        </div>
+
+        <div class="generation-loading" id="generationLoading" style="display: none;">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Loading Generation Data...</div>
+        </div>
+
+        <div class="pokedex-boxes" id="pokedexBoxes">
+        </div>
+    </div>
+
+    <!-- Pokemon Detail Modal -->
+    <div id="pokemonModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2 id="modalPokemonName"></h2>
+                <div id="modalPokemonNumber"></div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-left-column">
+                    <div class="pokemon-image-section">
+                        <img id="modalPokemonImage" src="" alt="">
+                    </div>
+                    
+                    <div class="pokemon-basic-info">
+                        <div class="info-row">
+                            <strong>Types:</strong>
+                            <div id="modalPokemonTypes"></div>
+                        </div>
+                        
+                        <div class="info-row">
+                            <strong>Height:</strong>
+                            <span id="modalPokemonHeight"></span>
+                        </div>
+                        
+                        <div class="info-row">
+                            <strong>Weight:</strong>
+                            <span id="modalPokemonWeight"></span>
+                        </div>
+                        
+                        <div class="info-row">
+                            <strong>Base Experience:</strong>
+                            <span id="modalPokemonExperience"></span>
+                        </div>
+                        
+                        <div class="abilities-section">
+                            <h3>Abilities</h3>
+                            <div id="modalPokemonAbilities"></div>
+                        </div>
+                        
+                        <div class="status-section">
+                            <h3>Tracking Status</h3>
+                            <div class="status-buttons">
+                                <button id="statusNotCaught" class="status-button">Not Caught</button>
+                                <button id="statusCaught" class="status-button">Caught</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-right-column">
+                    <div class="stats-section">
+                        <h3>Base Stats</h3>
+                        <div id="modalPokemonStats"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loading-modal" id="modalLoading">Loading Pokemon details...</div>
+        </div>
+    </div>
+
+    <script src="game-config.js"></script>
+    <script src="data/ability-descriptions.js"></script>
+    <script src="data/gen1-pokemon.js"></script>
+    <script src="data/gen2-pokemon.js"></script>
+    <script src="data/gen3-pokemon.js"></script>
+    <script src="data/gen4-pokemon.js"></script>
+    <script src="data/gen5-pokemon.js"></script>
+    <script src="data/gen6-pokemon.js"></script>
+    <script src="data/gen7-pokemon.js"></script>
+    <script src="data/gen8-pokemon.js"></script>
+    <script src="data/gen9-pokemon.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
