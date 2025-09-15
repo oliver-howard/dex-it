@@ -3274,6 +3274,206 @@ window.GEN7_POKEMON = [
       "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10104.png",
       "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10104.png"
     }
+  },
+  {
+    "id": 10109,
+    "name": "geodude-alola",
+    "types": [
+      "rock",
+      "electric"
+    ],
+    "height": 4,
+    "weight": 203,
+    "base_experience": 60,
+    "stats": {
+      "hp": 40,
+      "attack": 80,
+      "defense": 100,
+      "sp.-atk": 30,
+      "sp.-def": 30,
+      "speed": 20
+    },
+    "abilities": [
+      {
+        "name": "magnet-pull",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "sturdy",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "galvanize",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10109.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10109.png"
+    }
+  },
+  {
+    "id": 10110,
+    "name": "graveler-alola",
+    "types": [
+      "rock",
+      "electric"
+    ],
+    "height": 10,
+    "weight": 1100,
+    "base_experience": 137,
+    "stats": {
+      "hp": 55,
+      "attack": 95,
+      "defense": 115,
+      "sp.-atk": 45,
+      "sp.-def": 45,
+      "speed": 35
+    },
+    "abilities": [
+      {
+        "name": "magnet-pull",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "sturdy",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "galvanize",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10110.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10110.png"
+    }
+  },
+  {
+    "id": 10111,
+    "name": "golem-alola",
+    "types": [
+      "rock",
+      "electric"
+    ],
+    "height": 17,
+    "weight": 3160,
+    "base_experience": 223,
+    "stats": {
+      "hp": 80,
+      "attack": 120,
+      "defense": 130,
+      "sp.-atk": 55,
+      "sp.-def": 65,
+      "speed": 45
+    },
+    "abilities": [
+      {
+        "name": "magnet-pull",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "sturdy",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "galvanize",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10111.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10111.png"
+    }
+  },
+  {
+    "id": 10112,
+    "name": "grimer-alola",
+    "types": [
+      "poison",
+      "dark"
+    ],
+    "height": 7,
+    "weight": 420,
+    "base_experience": 65,
+    "stats": {
+      "hp": 80,
+      "attack": 80,
+      "defense": 50,
+      "sp.-atk": 40,
+      "sp.-def": 50,
+      "speed": 25
+    },
+    "abilities": [
+      {
+        "name": "poison-touch",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "gluttony",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "power-of-alchemy",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10112.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10112.png"
+    }
+  },
+  {
+    "id": 10113,
+    "name": "muk-alola",
+    "types": [
+      "poison",
+      "dark"
+    ],
+    "height": 10,
+    "weight": 520,
+    "base_experience": 175,
+    "stats": {
+      "hp": 105,
+      "attack": 105,
+      "defense": 75,
+      "sp.-atk": 65,
+      "sp.-def": 100,
+      "speed": 50
+    },
+    "abilities": [
+      {
+        "name": "poison-touch",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "gluttony",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "power-of-alchemy",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10113.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10113.png"
+    }
   }
 ];
 

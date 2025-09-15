@@ -4214,6 +4214,167 @@ window.GEN9_POKEMON = [
       "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1025.png",
       "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1025.png"
     }
+  },
+  // Paldean Forms introduced in Generation 9
+  {
+    "id": 10250,
+    "name": "tauros-paldea-combat-breed",
+    "types": [
+      "fighting"
+    ],
+    "height": 14,
+    "weight": 1150,
+    "base_experience": 172,
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 105,
+      "sp.-atk": 30,
+      "sp.-def": 70,
+      "speed": 100
+    },
+    "abilities": [
+      {
+        "name": "intimidate",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "anger-point",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "cud-chew",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10250.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10250.png"
+    }
+  },
+  {
+    "id": 10253,
+    "name": "wooper-paldea",
+    "types": [
+      "poison",
+      "ground"
+    ],
+    "height": 4,
+    "weight": 110,
+    "base_experience": 42,
+    "stats": {
+      "hp": 55,
+      "attack": 45,
+      "defense": 45,
+      "sp.-atk": 25,
+      "sp.-def": 25,
+      "speed": 15
+    },
+    "abilities": [
+      {
+        "name": "poison-point",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "water-absorb",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "unaware",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10253.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10253.png"
+    }
+  },
+  // Additional Paldean Forms
+  {
+    "id": 10251,
+    "name": "tauros-paldea-blaze-breed",
+    "types": [
+      "fighting",
+      "fire"
+    ],
+    "height": 14,
+    "weight": 850,
+    "base_experience": 172,
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 105,
+      "sp.-atk": 30,
+      "sp.-def": 70,
+      "speed": 100
+    },
+    "abilities": [
+      {
+        "name": "intimidate",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "anger-point",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "cud-chew",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10251.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10251.png"
+    }
+  },
+  {
+    "id": 10252,
+    "name": "tauros-paldea-aqua-breed",
+    "types": [
+      "fighting",
+      "water"
+    ],
+    "height": 14,
+    "weight": 1100,
+    "base_experience": 172,
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 105,
+      "sp.-atk": 30,
+      "sp.-def": 70,
+      "speed": 100
+    },
+    "abilities": [
+      {
+        "name": "intimidate",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "anger-point",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "cud-chew",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10252.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10252.png"
+    }
   }
 ];
 

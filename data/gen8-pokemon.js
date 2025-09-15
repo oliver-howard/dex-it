@@ -3639,6 +3639,891 @@ window.GEN8_POKEMON = [
       "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10174.png",
       "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10174.png"
     }
+  },
+  // Hisuian Forms introduced in Generation 8 (Legends: Arceus)
+  {
+    "id": 10229,
+    "name": "growlithe-hisui",
+    "types": [
+      "fire",
+      "rock"
+    ],
+    "height": 8,
+    "weight": 227,
+    "base_experience": 70,
+    "stats": {
+      "hp": 60,
+      "attack": 75,
+      "defense": 45,
+      "sp.-atk": 65,
+      "sp.-def": 50,
+      "speed": 55
+    },
+    "abilities": [
+      {
+        "name": "intimidate",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "flash-fire",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "rock-head",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10229.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10229.png"
+    }
+  },
+  {
+    "id": 10233,
+    "name": "typhlosion-hisui",
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "height": 16,
+    "weight": 698,
+    "base_experience": 240,
+    "stats": {
+      "hp": 73,
+      "attack": 84,
+      "defense": 78,
+      "sp.-atk": 119,
+      "sp.-def": 85,
+      "speed": 95
+    },
+    "abilities": [
+      {
+        "name": "blaze",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "frisk",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10233.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10233.png"
+    }
+  },
+  {
+    "id": 10236,
+    "name": "samurott-hisui",
+    "types": [
+      "water",
+      "dark"
+    ],
+    "height": 15,
+    "weight": 582,
+    "base_experience": 238,
+    "stats": {
+      "hp": 90,
+      "attack": 108,
+      "defense": 80,
+      "sp.-atk": 100,
+      "sp.-def": 65,
+      "speed": 85
+    },
+    "abilities": [
+      {
+        "name": "torrent",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "sharpness",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10236.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10236.png"
+    }
+  },
+  {
+    "id": 10244,
+    "name": "decidueye-hisui",
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "height": 16,
+    "weight": 370,
+    "base_experience": 239,
+    "stats": {
+      "hp": 88,
+      "attack": 112,
+      "defense": 80,
+      "sp.-atk": 95,
+      "sp.-def": 95,
+      "speed": 60
+    },
+    "abilities": [
+      {
+        "name": "overgrow",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "scrappy",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10244.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10244.png"
+    }
+  },
+  // Additional Galarian Forms
+  {
+    "id": 10164,
+    "name": "slowpoke-galar",
+    "types": [
+      "psychic"
+    ],
+    "height": 12,
+    "weight": 360,
+    "base_experience": 63,
+    "stats": {
+      "hp": 90,
+      "attack": 65,
+      "defense": 65,
+      "sp.-atk": 40,
+      "sp.-def": 40,
+      "speed": 15
+    },
+    "abilities": [
+      {
+        "name": "gluttony",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "own-tempo",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "regenerator",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10164.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10164.png"
+    }
+  },
+  {
+    "id": 10165,
+    "name": "slowbro-galar",
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "height": 16,
+    "weight": 705,
+    "base_experience": 172,
+    "stats": {
+      "hp": 95,
+      "attack": 100,
+      "defense": 95,
+      "sp.-atk": 100,
+      "sp.-def": 70,
+      "speed": 30
+    },
+    "abilities": [
+      {
+        "name": "quick-draw",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "own-tempo",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "regenerator",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10165.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10165.png"
+    }
+  },
+  {
+    "id": 10166,
+    "name": "farfetchd-galar",
+    "types": [
+      "fighting"
+    ],
+    "height": 8,
+    "weight": 420,
+    "base_experience": 132,
+    "stats": {
+      "hp": 52,
+      "attack": 95,
+      "defense": 55,
+      "sp.-atk": 58,
+      "sp.-def": 62,
+      "speed": 55
+    },
+    "abilities": [
+      {
+        "name": "steadfast",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "scrappy",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10166.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10166.png"
+    }
+  },
+  {
+    "id": 10167,
+    "name": "weezing-galar",
+    "types": [
+      "poison",
+      "fairy"
+    ],
+    "height": 30,
+    "weight": 160,
+    "base_experience": 172,
+    "stats": {
+      "hp": 65,
+      "attack": 90,
+      "defense": 120,
+      "sp.-atk": 85,
+      "sp.-def": 70,
+      "speed": 60
+    },
+    "abilities": [
+      {
+        "name": "levitate",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "neutralizing-gas",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "misty-surge",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10167.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10167.png"
+    }
+  },
+  {
+    "id": 10168,
+    "name": "mr-mime-galar",
+    "types": [
+      "ice",
+      "psychic"
+    ],
+    "height": 14,
+    "weight": 568,
+    "base_experience": 161,
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 65,
+      "sp.-atk": 90,
+      "sp.-def": 90,
+      "speed": 100
+    },
+    "abilities": [
+      {
+        "name": "vital-spirit",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "screen-cleaner",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "ice-body",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10168.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10168.png"
+    }
+  },
+  {
+    "id": 10169,
+    "name": "articuno-galar",
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "height": 17,
+    "weight": 509,
+    "base_experience": 290,
+    "stats": {
+      "hp": 90,
+      "attack": 85,
+      "defense": 85,
+      "sp.-atk": 125,
+      "sp.-def": 100,
+      "speed": 95
+    },
+    "abilities": [
+      {
+        "name": "competitive",
+        "is_hidden": false,
+        "slot": 1
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10169.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10169.png"
+    }
+  },
+  {
+    "id": 10170,
+    "name": "zapdos-galar",
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "height": 16,
+    "weight": 582,
+    "base_experience": 290,
+    "stats": {
+      "hp": 90,
+      "attack": 125,
+      "defense": 90,
+      "sp.-atk": 85,
+      "sp.-def": 90,
+      "speed": 100
+    },
+    "abilities": [
+      {
+        "name": "defiant",
+        "is_hidden": false,
+        "slot": 1
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10170.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10170.png"
+    }
+  },
+  {
+    "id": 10171,
+    "name": "moltres-galar",
+    "types": [
+      "dark",
+      "flying"
+    ],
+    "height": 20,
+    "weight": 660,
+    "base_experience": 290,
+    "stats": {
+      "hp": 90,
+      "attack": 85,
+      "defense": 90,
+      "sp.-atk": 100,
+      "sp.-def": 125,
+      "speed": 90
+    },
+    "abilities": [
+      {
+        "name": "berserk",
+        "is_hidden": false,
+        "slot": 1
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10171.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10171.png"
+    }
+  },
+  {
+    "id": 10172,
+    "name": "slowking-galar",
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "height": 18,
+    "weight": 795,
+    "base_experience": 172,
+    "stats": {
+      "hp": 95,
+      "attack": 65,
+      "defense": 80,
+      "sp.-atk": 110,
+      "sp.-def": 110,
+      "speed": 30
+    },
+    "abilities": [
+      {
+        "name": "curious-medicine",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "own-tempo",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "regenerator",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10172.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10172.png"
+    }
+  },
+  {
+    "id": 10173,
+    "name": "corsola-galar",
+    "types": [
+      "ghost"
+    ],
+    "height": 6,
+    "weight": 5,
+    "base_experience": 144,
+    "stats": {
+      "hp": 60,
+      "attack": 55,
+      "defense": 100,
+      "sp.-atk": 65,
+      "sp.-def": 100,
+      "speed": 30
+    },
+    "abilities": [
+      {
+        "name": "weak-armor",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "cursed-body",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10173.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10173.png"
+    }
+  },
+  // Additional Hisuian Forms
+  {
+    "id": 10231,
+    "name": "voltorb-hisui",
+    "types": [
+      "electric",
+      "grass"
+    ],
+    "height": 5,
+    "weight": 130,
+    "base_experience": 66,
+    "stats": {
+      "hp": 40,
+      "attack": 30,
+      "defense": 50,
+      "sp.-atk": 55,
+      "sp.-def": 55,
+      "speed": 100
+    },
+    "abilities": [
+      {
+        "name": "soundproof",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "static",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "aftermath",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10231.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10231.png"
+    }
+  },
+  {
+    "id": 10232,
+    "name": "electrode-hisui",
+    "types": [
+      "electric",
+      "grass"
+    ],
+    "height": 12,
+    "weight": 710,
+    "base_experience": 172,
+    "stats": {
+      "hp": 60,
+      "attack": 50,
+      "defense": 70,
+      "sp.-atk": 80,
+      "sp.-def": 80,
+      "speed": 150
+    },
+    "abilities": [
+      {
+        "name": "soundproof",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "static",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "aftermath",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10232.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10232.png"
+    }
+  },
+  {
+    "id": 10234,
+    "name": "qwilfish-hisui",
+    "types": [
+      "dark",
+      "poison"
+    ],
+    "height": 5,
+    "weight": 39,
+    "base_experience": 88,
+    "stats": {
+      "hp": 65,
+      "attack": 95,
+      "defense": 85,
+      "sp.-atk": 55,
+      "sp.-def": 55,
+      "speed": 85
+    },
+    "abilities": [
+      {
+        "name": "poison-point",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "swift-swim",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "intimidate",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10234.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10234.png"
+    }
+  },
+  {
+    "id": 10235,
+    "name": "sneasel-hisui",
+    "types": [
+      "fighting",
+      "poison"
+    ],
+    "height": 9,
+    "weight": 270,
+    "base_experience": 86,
+    "stats": {
+      "hp": 55,
+      "attack": 95,
+      "defense": 55,
+      "sp.-atk": 35,
+      "sp.-def": 75,
+      "speed": 115
+    },
+    "abilities": [
+      {
+        "name": "inner-focus",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "keen-eye",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "pickpocket",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10235.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10235.png"
+    }
+  },
+  {
+    "id": 10237,
+    "name": "lilligant-hisui",
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "height": 12,
+    "weight": 192,
+    "base_experience": 168,
+    "stats": {
+      "hp": 70,
+      "attack": 105,
+      "defense": 75,
+      "sp.-atk": 50,
+      "sp.-def": 75,
+      "speed": 105
+    },
+    "abilities": [
+      {
+        "name": "chlorophyll",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "hustle",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "leaf-guard",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10237.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10237.png"
+    }
+  },
+  {
+    "id": 10238,
+    "name": "zorua-hisui",
+    "types": [
+      "normal",
+      "ghost"
+    ],
+    "height": 7,
+    "weight": 125,
+    "base_experience": 66,
+    "stats": {
+      "hp": 35,
+      "attack": 60,
+      "defense": 40,
+      "sp.-atk": 85,
+      "sp.-def": 40,
+      "speed": 70
+    },
+    "abilities": [
+      {
+        "name": "illusion",
+        "is_hidden": false,
+        "slot": 1
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10238.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10238.png"
+    }
+  },
+  {
+    "id": 10239,
+    "name": "zoroark-hisui",
+    "types": [
+      "normal",
+      "ghost"
+    ],
+    "height": 16,
+    "weight": 730,
+    "base_experience": 179,
+    "stats": {
+      "hp": 55,
+      "attack": 100,
+      "defense": 60,
+      "sp.-atk": 125,
+      "sp.-def": 60,
+      "speed": 110
+    },
+    "abilities": [
+      {
+        "name": "illusion",
+        "is_hidden": false,
+        "slot": 1
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10239.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10239.png"
+    }
+  },
+  {
+    "id": 10240,
+    "name": "braviary-hisui",
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "height": 17,
+    "weight": 434,
+    "base_experience": 179,
+    "stats": {
+      "hp": 110,
+      "attack": 83,
+      "defense": 70,
+      "sp.-atk": 112,
+      "sp.-def": 70,
+      "speed": 65
+    },
+    "abilities": [
+      {
+        "name": "keen-eye",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "sheer-force",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "tinted-lens",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10240.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10240.png"
+    }
+  },
+  {
+    "id": 10241,
+    "name": "sliggoo-hisui",
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "height": 7,
+    "weight": 685,
+    "base_experience": 158,
+    "stats": {
+      "hp": 58,
+      "attack": 75,
+      "defense": 83,
+      "sp.-atk": 83,
+      "sp.-def": 113,
+      "speed": 40
+    },
+    "abilities": [
+      {
+        "name": "sap-sipper",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "shell-armor",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "gooey",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10241.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10241.png"
+    }
+  },
+  {
+    "id": 10242,
+    "name": "goodra-hisui",
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "height": 17,
+    "weight": 3341,
+    "base_experience": 270,
+    "stats": {
+      "hp": 80,
+      "attack": 100,
+      "defense": 100,
+      "sp.-atk": 110,
+      "sp.-def": 150,
+      "speed": 60
+    },
+    "abilities": [
+      {
+        "name": "sap-sipper",
+        "is_hidden": false,
+        "slot": 1
+      },
+      {
+        "name": "shell-armor",
+        "is_hidden": false,
+        "slot": 2
+      },
+      {
+        "name": "gooey",
+        "is_hidden": true,
+        "slot": 3
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10242.png",
+      "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10242.png"
+    }
   }
 ];
 
