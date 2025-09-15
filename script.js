@@ -8,11 +8,19 @@ class PokedexTracker {
         this.pokemonDetailCache = new Map(); // Cache API responses
         this.currentPokemonId = null;
         
+        // Web Worker for heavy operations
+        this.worker = null;
+        this.workerMessageId = 0;
+        this.workerCallbacks = new Map();
+        
         this.init();
     }
 
     async init() {
         console.log('=== Initializing Pokedex Tracker ===');
+        
+        // Initialize Web Worker for performance
+        this.initializeWorker();
         
         // Check if generation variables are available
         console.log('Checking generation variables at init...');
@@ -30,6 +38,50 @@ class PokedexTracker {
         // Load initial generation
         await this.setGeneration(this.currentGeneration);
         console.log('=== Initialization complete ===');
+    }
+    
+    initializeWorker() {
+        try {
+            this.worker = new Worker('pokemon-worker.js');
+            
+            this.worker.onmessage = (e) => {
+                const { id, type, data, error } = e.data;
+                const callback = this.workerCallbacks.get(id);
+                
+                if (callback) {
+                    this.workerCallbacks.delete(id);
+                    
+                    if (error) {
+                        callback.reject(new Error(error));
+                    } else {
+                        callback.resolve(data);
+                    }
+                }
+            };
+            
+            this.worker.onerror = (error) => {
+                console.error('Worker error:', error);
+            };
+            
+            console.log('Web Worker initialized for performance optimization');
+        } catch (error) {
+            console.warn('Web Worker not available, falling back to main thread:', error);
+            this.worker = null;
+        }
+    }
+    
+    sendWorkerMessage(type, data) {
+        return new Promise((resolve, reject) => {
+            if (!this.worker) {
+                reject(new Error('Web Worker not available'));
+                return;
+            }
+            
+            const id = ++this.workerMessageId;
+            this.workerCallbacks.set(id, { resolve, reject });
+            
+            this.worker.postMessage({ id, type, data });
+        });
     }
 
     populateTypeFilter() {
@@ -115,20 +167,18 @@ class PokedexTracker {
         
         try {
             console.log('Loading Pokemon data...');
-            let allPokemonData;
+            
             if (generation === 'national') {
-                // National Dex - load all Pokemon
-                allPokemonData = this.getAllPokemonData();
+                // For National Dex, use optimized loading
+                await this.loadNationalDexOptimized();
             } else {
-                // Specific generation
-                allPokemonData = this.getGenerationData(generation);
+                // Specific generation - load normally
+                let allPokemonData = this.getGenerationData(generation);
+                this.pokemon = allPokemonData.filter(pokemon => !isRegionalForm(pokemon.name));
+                this.filteredPokemon = [...this.pokemon];
             }
             
-            // Filter out regional forms from main display
-            this.pokemon = allPokemonData.filter(pokemon => !isRegionalForm(pokemon.name));
-            
-            console.log(`Loaded ${this.pokemon.length} Pokemon for generation ${generation} (${allPokemonData.length - this.pokemon.length} regional forms hidden)`);
-            this.filteredPokemon = [...this.pokemon];
+            console.log(`Loaded ${this.pokemon.length} Pokemon for generation ${generation}`);
             console.log('Calling updateUI...');
             this.updateUI();
             console.log('updateUI completed');
@@ -139,6 +189,62 @@ class PokedexTracker {
         } finally {
             this.showGenerationLoading(false);
         }
+    }
+    
+    async loadNationalDexOptimized() {
+        // Load Pokemon data progressively with batching
+        this.pokemon = [];
+        this.filteredPokemon = [];
+        
+        // First, load just essential data for initial display
+        for (let gen = 1; gen <= 9; gen++) {
+            const genData = this.getGenerationData(gen);
+            const filteredGenData = genData.filter(pokemon => !isRegionalForm(pokemon.name));
+            this.pokemon.push(...filteredGenData);
+        }
+        
+        this.filteredPokemon = [...this.pokemon];
+        
+        // Initialize Web Worker with Pokemon data for ultra-fast filtering
+        if (this.worker) {
+            try {
+                const result = await this.sendWorkerMessage('INIT_DATA', {
+                    pokemonData: this.pokemon
+                });
+                console.log(`Web Worker initialized with ${result.count} Pokemon`);
+            } catch (error) {
+                console.warn('Failed to initialize Web Worker, using main thread:', error);
+                this.buildSearchIndex();
+            }
+        } else {
+            // Fallback to main thread
+            this.buildSearchIndex();
+        }
+    }
+    
+    buildSearchIndex() {
+        // Create indexed lookup for faster searching
+        this.pokemonIndex = {
+            byName: new Map(),
+            byType: new Map(),
+            byId: new Map()
+        };
+        
+        this.pokemon.forEach((pokemon, index) => {
+            // Index by name (for search)
+            this.pokemonIndex.byName.set(pokemon.name.toLowerCase(), index);
+            
+            // Index by ID
+            this.pokemonIndex.byId.set(pokemon.id, index);
+            
+            // Index by types
+            pokemon.types.forEach(type => {
+                if (!this.pokemonIndex.byType.has(type)) {
+                    this.pokemonIndex.byType.set(type, []);
+                }
+                this.pokemonIndex.byType.get(type).push(index);
+            });
+        });
     }
 
     getGenerationData(genNumber) {
@@ -215,11 +321,39 @@ class PokedexTracker {
         }
     }
 
-    applyFilters() {
+    async applyFilters() {
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
         const statusFilter = document.getElementById('statusFilter').value;
         const typeFilter = document.getElementById('typeFilter').value;
 
+        // Use Web Worker for ultra-fast filtering on large datasets
+        if (this.currentGeneration === 'national' && this.worker) {
+            try {
+                const result = await this.sendWorkerMessage('FILTER_POKEMON', {
+                    searchTerm,
+                    statusFilter,
+                    typeFilter,
+                    pokemonStatus: this.pokemonStatus
+                });
+                
+                this.filteredPokemon = result.results;
+                console.log(`Worker filtering: ${result.resultCount} results in ${result.filterTime.toFixed(2)}ms`);
+            } catch (error) {
+                console.warn('Worker filtering failed, using main thread:', error);
+                this.applyFiltersMainThread(searchTerm, statusFilter, typeFilter);
+            }
+        } else if (this.currentGeneration === 'national' && this.pokemonIndex) {
+            // Fallback to optimized main thread filtering
+            this.applyFiltersOptimized(searchTerm, statusFilter, typeFilter);
+        } else {
+            // Standard filtering for smaller datasets
+            this.applyFiltersMainThread(searchTerm, statusFilter, typeFilter);
+        }
+
+        this.renderPokedexBoxes();
+    }
+    
+    applyFiltersMainThread(searchTerm, statusFilter, typeFilter) {
         this.filteredPokemon = this.pokemon.filter(pokemon => {
             const matchesSearch = pokemon.name.toLowerCase().includes(searchTerm) || 
                                   pokemon.id.toString().includes(searchTerm);
@@ -231,8 +365,48 @@ class PokedexTracker {
 
             return matchesSearch && matchesStatus && matchesType;
         });
-
-        this.renderPokedexBoxes();
+    }
+    
+    applyFiltersOptimized(searchTerm, statusFilter, typeFilter) {
+        let candidateIndices = new Set();
+        
+        // Start with type filter if specified (most selective)
+        if (typeFilter !== 'all') {
+            const typeIndices = this.pokemonIndex.byType.get(typeFilter) || [];
+            candidateIndices = new Set(typeIndices);
+        } else {
+            // If no type filter, start with all Pokemon
+            candidateIndices = new Set(Array.from({length: this.pokemon.length}, (_, i) => i));
+        }
+        
+        // Apply search filter
+        if (searchTerm) {
+            const searchMatches = new Set();
+            candidateIndices.forEach(index => {
+                const pokemon = this.pokemon[index];
+                if (pokemon.name.toLowerCase().includes(searchTerm) || 
+                    pokemon.id.toString().includes(searchTerm)) {
+                    searchMatches.add(index);
+                }
+            });
+            candidateIndices = searchMatches;
+        }
+        
+        // Apply status filter
+        if (statusFilter !== 'all') {
+            const statusMatches = new Set();
+            candidateIndices.forEach(index => {
+                const pokemon = this.pokemon[index];
+                const status = this.pokemonStatus[pokemon.id] || 'not-caught';
+                if (status === statusFilter) {
+                    statusMatches.add(index);
+                }
+            });
+            candidateIndices = statusMatches;
+        }
+        
+        // Convert indices back to Pokemon objects
+        this.filteredPokemon = Array.from(candidateIndices).map(index => this.pokemon[index]);
     }
 
     renderPokedexBoxes() {
@@ -254,7 +428,16 @@ class PokedexTracker {
             return;
         }
 
-        // Create boxes of 30 Pokémon each
+        // Use virtualized rendering for large datasets (like pokedextracker.com)
+        if (this.currentGeneration === 'national' && this.filteredPokemon.length > 200) {
+            this.renderVirtualizedGrid(container);
+        } else {
+            this.renderPokedexBoxesStandard(container);
+        }
+    }
+    
+    renderPokedexBoxesStandard(container) {
+        // Standard rendering for smaller datasets
         const pokemonPerBox = 30;
         const totalBoxes = Math.ceil(this.filteredPokemon.length / pokemonPerBox);
         console.log('Creating', totalBoxes, 'boxes for', this.filteredPokemon.length, 'Pokemon');
@@ -263,12 +446,196 @@ class PokedexTracker {
             const startIndex = boxIndex * pokemonPerBox;
             const endIndex = Math.min(startIndex + pokemonPerBox, this.filteredPokemon.length);
             const boxPokemon = this.filteredPokemon.slice(startIndex, endIndex);
-            console.log(`Creating box ${boxIndex + 1} with ${boxPokemon.length} Pokemon`);
 
             const box = this.createPokedexBox(boxIndex + 1, boxPokemon, startIndex);
             container.appendChild(box);
         }
-        console.log('All boxes created and appended to container');
+    }
+    
+    renderVirtualizedGrid(container) {
+        console.log('Using virtualized rendering for', this.filteredPokemon.length, 'Pokemon');
+        
+        // Create virtualized container structure
+        const virtualContainer = document.createElement('div');
+        virtualContainer.className = 'virtual-pokemon-grid';
+        virtualContainer.style.cssText = `
+            position: relative;
+            height: ${Math.ceil(this.filteredPokemon.length / 6) * 120}px;
+            overflow-y: auto;
+        `;
+        
+        const viewport = document.createElement('div');
+        viewport.className = 'virtual-viewport';
+        viewport.style.cssText = `
+            height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        `;
+        
+        const content = document.createElement('div');
+        content.className = 'virtual-content';
+        content.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+        `;
+        
+        viewport.appendChild(content);
+        virtualContainer.appendChild(viewport);
+        container.appendChild(virtualContainer);
+        
+        // Set up virtual scrolling
+        this.setupVirtualScrolling(viewport, content);
+        
+        // Initial render
+        this.updateVirtualGrid(viewport, content);
+    }
+    
+    setupVirtualScrolling(viewport, content) {
+        // Virtual scrolling parameters
+        this.virtualConfig = {
+            itemHeight: 120, // Height of each Pokemon row
+            itemsPerRow: 6,
+            containerHeight: viewport.clientHeight || 600,
+            visibleStart: 0,
+            visibleEnd: 0,
+            overscan: 5 // Render extra rows for smooth scrolling
+        };
+        
+        // Add scroll listener with throttling
+        let scrollTimeout;
+        viewport.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                this.updateVirtualGrid(viewport, content);
+            }, 16); // ~60fps
+        });
+        
+        // Add resize listener
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                this.virtualConfig.containerHeight = viewport.clientHeight;
+                this.updateVirtualGrid(viewport, content);
+            }, 100);
+        });
+    }
+    
+    updateVirtualGrid(viewport, content) {
+        const { itemHeight, itemsPerRow, containerHeight, overscan } = this.virtualConfig;
+        const scrollTop = viewport.scrollTop;
+        
+        // Calculate visible range
+        const totalRows = Math.ceil(this.filteredPokemon.length / itemsPerRow);
+        const visibleRowStart = Math.max(0, Math.floor(scrollTop / itemHeight) - overscan);
+        const visibleRowEnd = Math.min(totalRows, Math.ceil((scrollTop + containerHeight) / itemHeight) + overscan);
+        
+        const startIndex = visibleRowStart * itemsPerRow;
+        const endIndex = Math.min(this.filteredPokemon.length, visibleRowEnd * itemsPerRow);
+        
+        // Only update if range changed significantly
+        if (startIndex === this.virtualConfig.visibleStart && endIndex === this.virtualConfig.visibleEnd) {
+            return;
+        }
+        
+        this.virtualConfig.visibleStart = startIndex;
+        this.virtualConfig.visibleEnd = endIndex;
+        
+        // Set total height
+        content.style.height = `${totalRows * itemHeight}px`;
+        
+        // Use document fragment for efficient DOM manipulation
+        const fragment = document.createDocumentFragment();
+        
+        // Clear existing content
+        content.innerHTML = '';
+        
+        // Create grid for visible Pokemon only
+        const visiblePokemon = this.filteredPokemon.slice(startIndex, endIndex);
+        
+        const gridContainer = document.createElement('div');
+        gridContainer.className = 'virtual-pokemon-row-container';
+        gridContainer.style.cssText = `
+            position: absolute;
+            top: ${visibleRowStart * itemHeight}px;
+            left: 0;
+            right: 0;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            padding: 10px;
+        `;
+        
+        visiblePokemon.forEach((pokemon) => {
+            const slot = this.createOptimizedPokemonSlot(pokemon);
+            gridContainer.appendChild(slot);
+        });
+        
+        fragment.appendChild(gridContainer);
+        content.appendChild(fragment);
+        
+        console.log(`Virtual render: showing ${visiblePokemon.length} Pokemon (${startIndex}-${endIndex})`);
+    }
+    
+    createOptimizedPokemonSlot(pokemon) {
+        const status = this.pokemonStatus[pokemon.id] || 'not-caught';
+        
+        const slot = document.createElement('div');
+        slot.className = `pokemon-slot ${status}`;
+        slot.style.cssText = `
+            aspect-ratio: 1;
+            border: 1px solid #ddd;
+            background: ${status === 'caught' ? '#e8f5e8' : '#fafafa'};
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 6px;
+            position: relative;
+            border-radius: 4px;
+        `;
+        
+        slot.onclick = (e) => {
+            if (!e.target.classList.contains('toggle-icon')) {
+                e.preventDefault();
+                this.showPokemonModal(pokemon.id);
+            }
+        };
+        
+        // Use innerHTML for faster creation
+        slot.innerHTML = `
+            <div class="pokemon-number" style="font-size: 0.7em; color: #666; margin-bottom: 2px; font-weight: bold;">
+                #${pokemon.id.toString().padStart(3, '0')}
+            </div>
+            <img class="pokemon-sprite" 
+                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png" 
+                 alt="${pokemon.name}"
+                 loading="lazy"
+                 style="width: 64px; height: 64px; image-rendering: pixelated; margin-bottom: 2px;">
+            <div class="pokemon-name" style="font-size: 0.6em; color: #333; text-align: center; line-height: 1.1; text-transform: capitalize; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%;">
+                ${pokemon.name.replace('-', ' ')}
+            </div>
+            <div class="toggle-icon" style="position: absolute; top: 4px; right: 4px; width: 20px; height: 20px; border-radius: 50%; border: 2px solid ${status === 'caught' ? '#4CAF50' : '#ddd'}; background: ${status === 'caught' ? '#4CAF50' : 'white'}; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: all 0.2s; z-index: 10; color: ${status === 'caught' ? 'white' : '#999'};">
+                ${status === 'caught' ? '✓' : '○'}
+            </div>
+        `;
+        
+        // Add toggle functionality
+        const toggleIcon = slot.querySelector('.toggle-icon');
+        toggleIcon.onclick = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.togglePokemonStatus(pokemon.id);
+        };
+        
+        // Cache element for updates
+        this.pokemonElements.set(pokemon.id, slot);
+        
+        return slot;
     }
 
     createPokedexBox(boxNumber, pokemon, startIndex) {

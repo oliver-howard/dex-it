@@ -1314,7 +1314,66 @@ h1 {
     }
 }
 
+/* Virtual Grid Styles for Ultra Performance */
+.virtual-pokemon-grid {
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.virtual-viewport {
+    background: white;
+    will-change: scroll-position;
+}
+
+.virtual-content {
+    background: white;
+}
+
+.virtual-pokemon-row-container {
+    background: white;
+    contain: layout style paint;
+}
+
+.virtual-pokemon-row-container .pokemon-slot {
+    contain: layout style paint;
+    will-change: transform;
+}
+
+.virtual-pokemon-row-container .pokemon-slot:hover {
+    transform: scale(1.02);
+    border-color: var(--generation-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.virtual-pokemon-row-container .pokemon-sprite {
+    transition: none; /* Remove transitions for performance */
+}
+
+.virtual-pokemon-row-container .toggle-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Optimize for mobile */
+@media (max-width: 768px) {
+    .virtual-pokemon-row-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        padding: 8px;
+    }
+    
+    .virtual-pokemon-row-container .pokemon-sprite {
+        width: 48px;
+        height: 48px;
+    }
+}
+
 @media (max-width: 480px) {
+    .virtual-pokemon-row-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
     .pokemon-grid {
         grid-template-columns: repeat(3, 1fr);
     }
